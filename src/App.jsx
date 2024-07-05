@@ -1,10 +1,15 @@
 import './App.css'
+import Movies from './components/Movies'
+import Navbar from './components/Navbar'
 
 function App() {
 
   return (
     <>
-    <p>Start</p>
+    <div>
+      <Navbar />
+    </div>
+    <Movies />
     </>
   )
 }
