@@ -6,10 +6,10 @@ const Navbar = () => {
     <div className="navbar">
       <p>Home</p>
       <p>Catalog</p>
-      <p>Home</p>
-      <p>Home</p>
-      <p>Home</p>
-
+      <p>About</p>
+      <p>Contact</p>
+      <p>Login</p>
+      <p>Register</p>
     </div>
   );
 };
