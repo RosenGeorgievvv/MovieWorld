@@ -11,7 +11,7 @@ const Navbar = () => {
       <p>Login</p>
       <p>Register</p> 
     </div> 
-  );  
+  );   
 };
 
 export default Navbar;
