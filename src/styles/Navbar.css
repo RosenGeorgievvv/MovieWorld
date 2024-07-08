@@ -1,5 +1,6 @@
 .navbar {
     padding: 10px 20px;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,16 +18,19 @@
   }
   
   .nav-links li a {
-    color: white;
+    color: #f9d3b4;
     text-decoration: none;
     font-size: 18px;
     padding: 10px 15px;
     transition: background-color 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    
   }
   
   .nav-links li a:hover {
     background-color: #575757;
     border-radius: 4px;
+    font-size: 20px;
   }
   
   .auth-links {
@@ -41,15 +45,17 @@
   }
   
   .auth-links li a {
-    color: white;
+    color: #f9d3b4;
     text-decoration: none;
     font-size: 18px;
     padding: 10px 15px;
     transition: background-color 0.3s ease;
+    transition: 0.3s ease-in-out;
   }
   
   .auth-links li a:hover {
     background-color: #575757;
     border-radius: 4px;
+    font-size: 20px;
   }
   
