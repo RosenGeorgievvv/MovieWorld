@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Movies from "./components/Movies";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
-import Catalog from "./pages/Catalog";
+import Favorites from "./pages/Favorites";
 import About from "./pages/About";
 import Register from "./pages/Register";
 
@@ -15,7 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Movies />} />
-        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog" element={<Favorites />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

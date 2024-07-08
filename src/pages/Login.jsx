@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import "../styles/Login.css";
 
 const Login = () => {
   return (
@@ -10,7 +11,7 @@ const Login = () => {
                 <input type='password' placeholder='password'/>
                 <button>Sign in</button>
             </form>
-            <p>You do not have an account? Register</p>
+            <p>You do not have an account? <a href="/register">Register</a></p>
         </div>
     </div>
   )
