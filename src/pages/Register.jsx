@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Register.css';
 import {auth} from '../services/firebase';
@@ -11,6 +11,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [repass, setRepass] = useState('');
 
+  const clearInput = useRef('');
+
   const signUp = (e) =>{
     e.preventDefault();
 
@@ -21,11 +23,12 @@ const Register = () => {
     })
   }
 
+
   return (
     <div className='main-form'>
       <div className='main-wrapper'>
         <span className='title'>Register</span>
-        <form onSubmit={signUp}>
+        <form onSubmit={signUp} ref={clearInput}>
           <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
           <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
           <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
