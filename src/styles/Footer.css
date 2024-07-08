@@ -5,7 +5,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  position: fixed; 
+  bottom: 0; 
+  width: 100%; 
+  z-index: 1000; 
 }
 
 .footer-left {
@@ -15,7 +18,7 @@
 
 .social-icon {
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   margin: 0 10px;
   transition: color 0.3s ease;
 }
@@ -25,12 +28,11 @@
 }
 
 .footer-center {
-  flex: 1;
-  text-align: center;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 .footer-center p {
-  margin: 5px 0;
+  margin: 0 10px;
+  text-align: left; 
 }
