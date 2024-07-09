@@ -11,7 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [repass, setRepass] = useState('');
 
-  const clearInput = useRef('');
+  const clearInput = useRef(''); 
 
   const signUp = (e) =>{
     e.preventDefault();
