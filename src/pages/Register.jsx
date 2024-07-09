@@ -10,7 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repass, setRepass] = useState('');
- 
+  
   const clearInput = useRef(''); 
 
   const signUp = (e) =>{
