@@ -19,7 +19,7 @@ const Register = () => {
     createUserWithEmailAndPassword(auth, email, password).then((credentials) =>{
       console.log(credentials);
     }).catch((error) =>{
-      console.log(error);  
+      console.log(error);   
     })
   }
 
