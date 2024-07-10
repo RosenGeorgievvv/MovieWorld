@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Register.css';
 import {auth} from '../services/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth'; 
 
 const Register = () => {
 
