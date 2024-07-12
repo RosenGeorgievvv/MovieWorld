@@ -19,6 +19,7 @@ const Register = () => {
 
     createUserWithEmailAndPassword(auth, email, password).then((credentials) =>{
       console.log(credentials);
+      navigate('/');
     }).catch((error) =>{
       console.log(error);   
     })
