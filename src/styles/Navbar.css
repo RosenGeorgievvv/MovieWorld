@@ -38,11 +38,16 @@
     margin: 0;
     padding: 0;
     display: flex;
+    color: #f9d3b4;
   }
   
   .auth-links li {
-    margin: 0 10px;
+    margin: 10px;
   }
+  .email{
+    padding-top: 10px;
+  }
+  
   
   .auth-links li a {
     color: #f9d3b4;

@@ -20,7 +20,7 @@ const Navbar = () => {
       <ul className="auth-links">
         {currentUser ? (
           <>
-            <li>{currentUser.email}</li>
+            <li className='email'>{currentUser.email}</li>
             <li><button onClick={logout}>Logout</button></li>
           </>
         ) : (
