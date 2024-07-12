@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
+import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import { getApp } from "firebase/app";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,4 +22,8 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app); 
 
 // Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+export const db = getFirestore(app);
+
+// Get a non-default Storage bucket
+export const firebaseApp = getApp();
+export const storage = getStorage(firebaseApp, "gs://movieland-b9019.appspot.com");
