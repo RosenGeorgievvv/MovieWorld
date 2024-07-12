@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Register.css';
 import {auth} from '../services/firebase'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';    
@@ -12,6 +12,7 @@ const Register = () => {
   const [repass, setRepass] = useState(''); 
    
   const clearInput = useRef(''); 
+  const navigate = useNavigate();
 
   const signUp = (e) =>{
     e.preventDefault();
