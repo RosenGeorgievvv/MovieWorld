@@ -13,6 +13,7 @@ const Navbar = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/favorites">Favorites</Link></li>
           <li><Link to="/about">About</Link></li>
+          {currentUser && <li><Link to="/create">Add Movie</Link></li>}
         </ul>
       </div>
       <ul className="auth-links">
