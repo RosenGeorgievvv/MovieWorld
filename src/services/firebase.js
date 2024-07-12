@@ -26,4 +26,4 @@ export const db = getFirestore(app);
 
 // Get a non-default Storage bucket
 export const firebaseApp = getApp();
-export const storage = getStorage(firebaseApp, "gs://movieland-b9019.appspot.com");  
+export const storage = getStorage(firebaseApp, "gs://movieland-b9019.appspot.com");   
