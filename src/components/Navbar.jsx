@@ -14,7 +14,7 @@ const Navbar = () => {
           {currentUser && <li><Link to="/create">Add Movie</Link></li>}
           <li><Link to="/favorites">Favorites</Link></li>
           <li><Link to="/about">About</Link></li>
-    
+  
         </ul> 
       </div>
       <ul className="auth-links">
