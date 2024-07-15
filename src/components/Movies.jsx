@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../services/api.js";
 import { db } from '../services/firebase';
-import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs,addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import MovieCard from "./MovieCard";
 import SearchIcon from "../assets/search.svg";
 
 const Movies = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     searchMovies("Batman");
+    fetchFavorites();
   }, []);
 
   const searchMovies = async (title) => {
@@ -50,32 +52,66 @@ const Movies = () => {
     searchMovies(searchTerm);
   };
 
+  const handleLike = async (movie) => {
+    try {
+      await addDoc(collection(db, "favorites"), movie);
+      fetchFavorites();
+    } catch (err) {
+      console.error("Failed to add favorite", err);
+    }
+  };
+
+  const handleUnlike = async (movie) => {
+    try {
+      const favoriteMovie = favorites.find(fav => fav.imdbID === movie.imdbID || fav.id === movie.id);
+      if (favoriteMovie) {
+        await deleteDoc(doc(db, "favorites", favoriteMovie.id));
+        fetchFavorites();
+      }
+    } catch (err) {
+      console.error("Failed to remove favorite", err);
+    }
+  };
+
+  const fetchFavorites = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "favorites"));
+      const favoritesList = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      setFavorites(favoritesList);
+    } catch (err) {
+      console.error("Failed to fetch favorites", err);
+    }
+  };
+
+  const isFavorite = (movie) => {
+    return favorites.some(fav => fav.imdbID === movie.imdbID || fav.id === movie.id);
+  };
+
   return (
     <div className="app">
       <h1>MovieLand</h1>
 
       <div className="search">
-        <input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for movies"
-        />
-        <img
-          src={SearchIcon}
-          alt="search"
-          onClick={() => searchMovies(searchTerm)}
-        />
+        <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search for movies" />
+        <img src={SearchIcon} alt="search" onClick={() => searchMovies(searchTerm)} />
       </div>
 
       {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
             <MovieCard
-              key={movie.id || movie.imdbID}
-              movie={movie}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-            />
+            key={movie.imdbID || movie.id}
+            movie={movie}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onLike={handleLike}
+            onUnlike={handleUnlike}
+            isFavorite={isFavorite(movie)}
+            showLikeButton={!isFavorite(movie)}
+          />
           ))}
         </div>
       ) : (

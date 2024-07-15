@@ -1,9 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { db } from "../services/firebase";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import MovieCard from "../components/MovieCard";
 
 const Favorites = () => {
-  return (
-    <div>Favorites</div>
-  )
-}
+  const [favorites, setFavorites] = useState([]);
 
-export default Favorites
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
+
+  const fetchFavorites = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "favorites"));
+      const favoritesList = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      setFavorites(favoritesList);
+    } catch (err) {
+      console.error("Failed to fetch favorites", err);
+    }
+  };
+
+  const handleUnlike = async (movie) => {
+    try {
+      await deleteDoc(doc(db, "favorites", movie.id));
+      fetchFavorites();
+    } catch (err) {
+      console.error("Failed to remove favorite", err);
+    }
+  };
+
+  return (
+    <div className="app">
+      <h1>Favorites</h1>
+      {favorites.length > 0 ? (
+        <div className="container">
+          {favorites.map(movie => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onUnlike={handleUnlike}
+              showLikeButton={false}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          <h2>No favorites found</h2>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Favorites;

@@ -1,7 +1,7 @@
 import React from "react";
 
-const MovieCard = ({ movie, onEdit, onDelete }) => {
-  const { imdbID, id,  Year, Poster, image, Title, title,  Type, description, isFirebaseMovie } = movie;
+const MovieCard = ({ movie, onEdit, onDelete, onLike, onUnlike, showLikeButton }) => {
+  const { imdbID, id, Year, Poster, image, Title, title, Type, description, isFirebaseMovie } = movie;
 
   return (
     <div className="movie" key={imdbID || id}>
@@ -10,7 +10,7 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
       </div>
 
       <div>
-        <img src={ Poster !== "N/A" ? Poster : image || "https://via.placeholder.com/400" } alt={Title || title} />
+        <img src={Poster !== "N/A" ? Poster : image || "https://via.placeholder.com/400"} alt={Title || title} />
       </div>
 
       <div>
@@ -22,6 +22,12 @@ const MovieCard = ({ movie, onEdit, onDelete }) => {
             <button onClick={() => onEdit(movie)}>Edit</button>
             <button onClick={() => onDelete(id)}>Delete</button>
           </div>
+        )}
+        {showLikeButton && (
+          <button onClick={() => onLike(movie)}>Like</button>
+        )}
+        {!showLikeButton && (
+          <button onClick={() => onUnlike(movie)}>Unlike</button>
         )}
       </div>
     </div>
