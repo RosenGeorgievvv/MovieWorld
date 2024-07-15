@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../services/api.js";
 import { db } from '../services/firebase';
-import { collection, getDocs,addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import MovieCard from "./MovieCard";
 import SearchIcon from "../assets/search.svg";
 
@@ -18,7 +18,6 @@ const Movies = () => {
   const searchMovies = async (title) => {
     const apiMovies = await fetchMoviesFromAPI(title);
     const firebaseMovies = await fetchFirebaseMovies();
-
     setMovies([...apiMovies, ...firebaseMovies]);
   };
 
@@ -61,7 +60,7 @@ const Movies = () => {
     }
   };
 
-  const handleUnlike = async (movie) => {
+  const handleRemove = async (movie) => {
     try {
       const favoriteMovie = favorites.find(fav => fav.imdbID === movie.imdbID || fav.id === movie.id);
       if (favoriteMovie) {
@@ -103,15 +102,15 @@ const Movies = () => {
         <div className="container">
           {movies.map((movie) => (
             <MovieCard
-            key={movie.imdbID || movie.id}
-            movie={movie}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onLike={handleLike}
-            onUnlike={handleUnlike}
-            isFavorite={isFavorite(movie)}
-            showLikeButton={!isFavorite(movie)}
-          />
+              key={movie.imdbID || movie.id}
+              movie={movie}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onLike={handleLike}
+              onRemove={handleRemove}
+              isFavorite={isFavorite(movie)}
+              showLikeButton={!isFavorite(movie)}
+            />
           ))}
         </div>
       ) : (
