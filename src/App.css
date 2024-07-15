@@ -243,9 +243,124 @@ h1 {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .movie {
+    width: 260px;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .app {
+    padding: 3rem;
+  }
+
+  .search {
+    padding: 1.25rem 1.5rem;
+    width: 80%;
+  }
+
+  .search input {
+    font-size: 1.25rem;
+  }
+
+  .search img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .movie {
+    width: 230px;
+    height: 360px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    padding: 2.5rem;
+  }
+
+  .search {
+    padding: 1rem 1.25rem;
+    width: 85%;
+  }
+
+  .search input {
+    font-size: 1.25rem;
+  }
+
+  .search img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .movie {
+    width: 200px;
+    height: 320px;
+  }
+
+  .empty h2 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app {
+    padding: 2rem;
+  }
+
+  .search {
+    padding: 1rem 1rem;
+    width: 90%;
+  }
+
+  .search input {
+    font-size: 1rem;
+  }
+
+  .search img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .movie {
+    width: 180px;
+    height: 290px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app {
+    padding: 1.5rem;
+  }
+
+  .search {
+    padding: 0.75rem 1rem;
+    width: 95%;
+  }
+
+  .search input {
+    font-size: 0.875rem;
+  }
+
+  .search img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .movie {
+    width: 160px;
+    height: 260px;
+  }
+
+  .empty h2 {
+    font-size: 0.875rem;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .app {
-    padding: 4rem 1rem;
+    padding: 1rem;
   }
 
   h1 {
@@ -257,7 +372,12 @@ h1 {
   }
 
   .movie {
-    width: "100%";
+    width: 140px;
+    height: 230px;
     margin: 1rem;
+  }
+
+  .search input {
+    font-size: 0.75rem;
   }
 }

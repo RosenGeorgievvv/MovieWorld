@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db } from '../services/firebase';
 import '../styles/Edit.css';
 
 const EditForm = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -17,22 +19,36 @@ const EditForm = () => {
       if (docSnap.exists()) {
         setMovie({ id: docSnap.id, ...docSnap.data() });
       } else {
-        console.log('No such record!');
+        console.log('No such document!');
       }
     };
 
     fetchMovie();
   }, [id]);
 
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     const docRef = doc(db, 'movies', id);
-    await updateDoc(docRef, movie);
+
+    if (imageFile) {
+      const storage = getStorage();
+      const imageRef = ref(storage, `movies/${id}/${imageFile.name}`);
+      await uploadBytes(imageRef, imageFile);
+      const imageUrl = await getDownloadURL(imageRef);
+      await updateDoc(docRef, { ...movie, image: imageUrl });
+    } else {
+      await updateDoc(docRef, movie);
+    }
+
     alert('Movie updated successfully');
-    navigate('/')
+    navigate('/');
   };
 
-  if (!movie) return <div>Loading...</div>;
+  if (!movie) return <div className='loading'>Loading...</div>;
 
   return (
     <div className="main-form">
@@ -44,11 +60,11 @@ const EditForm = () => {
             <input type="text" value={movie.title} onChange={(e) => setMovie({ ...movie, title: e.target.value })} />
           </div>
           <div className="form-details">
-            <label>Image:</label>
-            <input type="file" accept="image/*" onChange={(e) => setMovie({ ...movie, image: e.target.value })} />
+            <label>Image</label>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
           </div>
           <div className="form-details">
-            <label>Description:</label>
+            <label>Description</label>
             <textarea value={movie.description} onChange={(e) => setMovie({ ...movie, description: e.target.value })} />
           </div>
           <button type="submit">Save</button>

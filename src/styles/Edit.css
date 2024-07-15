@@ -104,4 +104,9 @@
   p a:hover {
     text-decoration: underline;
   }
+  .loading{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
   
