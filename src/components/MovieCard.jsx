@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie, onDelete, onLike, onUnlike, showLikeButton }) => {
   const { imdbID, id, Year, Poster, image, Title, title, Type, description, isFirebaseMovie } = movie;
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/edit/${id}`);
+  };
 
   return (
     <div className="movie" key={imdbID || id}>
@@ -20,7 +26,7 @@ const MovieCard = ({ movie, onDelete, onLike, onUnlike, showLikeButton }) => {
         
         {isFirebaseMovie && (
           <div className="buttons">
-            <button>Edit</button>
+            <button onClick={handleEdit}>Edit</button>
             <button onClick={() => onDelete(id)}>Delete</button>
           </div>
         )}

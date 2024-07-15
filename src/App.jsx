@@ -8,6 +8,7 @@ import Favorites from "./pages/Favorites";
 import About from "./pages/About";
 import Register from "./pages/Register";
 import Create from "./pages/Create";
+import EditForm from "./components/EditForm"; 
 import { AuthProvider } from "./components/Authentication";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/edit/:id" element={<EditForm />} />
           </Routes>
           <Footer />
         </div>
