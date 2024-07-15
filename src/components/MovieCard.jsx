@@ -6,17 +6,18 @@ const MovieCard = ({ movie, onEdit, onDelete, onLike, onUnlike, showLikeButton }
   return (
     <div className="movie" key={imdbID || id}>
       <div>
-        <p>{Year || "Unknown Year"}</p>
+        <p>{Year}</p>
       </div>
 
       <div>
-        <img src={Poster !== "N/A" ? Poster : image || "https://via.placeholder.com/400"} alt={Title || title} />
+        <img src={Poster || image} alt={Title || title} />
       </div>
 
       <div>
         <span>{Type || "Movie"}</span>
         <h3>{Title || title}</h3>
         {description && <p>{description}</p>}
+        
         {isFirebaseMovie && (
           <div className="buttons">
             <button onClick={() => onEdit(movie)}>Edit</button>
