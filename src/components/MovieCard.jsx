@@ -1,6 +1,6 @@
 import React from "react";
 
-const MovieCard = ({ movie, onEdit, onDelete, onLike, onRemove, showLikeButton }) => {
+const MovieCard = ({ movie, onDelete, onLike, onUnlike, showLikeButton }) => {
   const { imdbID, id, Year, Poster, image, Title, title, Type, description, isFirebaseMovie } = movie;
 
   return (
@@ -20,14 +20,14 @@ const MovieCard = ({ movie, onEdit, onDelete, onLike, onRemove, showLikeButton }
         
         {isFirebaseMovie && (
           <div className="buttons">
-            <button onClick={() => onEdit(movie)}>Edit</button>
+            <button>Edit</button>
             <button onClick={() => onDelete(id)}>Delete</button>
           </div>
         )}
         {showLikeButton ? (
           <button onClick={() => onLike(movie)}>Like</button>
         ) : (
-          <button onClick={() => onRemove(movie)}>Remove</button>
+          <button onClick={() => onUnlike(movie)}>Unlike</button>
         )}
       </div>
     </div>

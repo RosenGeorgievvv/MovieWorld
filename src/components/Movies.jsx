@@ -5,6 +5,7 @@ import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase
 import MovieCard from "./MovieCard";
 import SearchIcon from "../assets/search.svg";
 
+
 const Movies = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
@@ -37,15 +38,6 @@ const Movies = () => {
     return firebaseMovies;
   };
 
-  const handleEdit = async (movie) => {
-    const newTitle = prompt("Edit title", movie.title || movie.Title);
-    if (newTitle) {
-      const movieDoc = doc(db, 'movies', movie.id);
-      await updateDoc(movieDoc, { title: newTitle });
-      searchMovies(searchTerm); 
-    }
-  };
-
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'movies', id));
     searchMovies(searchTerm);
@@ -60,7 +52,7 @@ const Movies = () => {
     }
   };
 
-  const handleRemove = async (movie) => {
+  const handleUnlike = async (movie) => {
     try {
       const favoriteMovie = favorites.find(fav => fav.imdbID === movie.imdbID || fav.id === movie.id);
       if (favoriteMovie) {
@@ -104,10 +96,9 @@ const Movies = () => {
             <MovieCard
               key={movie.imdbID || movie.id}
               movie={movie}
-              onEdit={handleEdit}
               onDelete={handleDelete}
               onLike={handleLike}
-              onRemove={handleRemove}
+              onUnlike={handleUnlike}
               isFavorite={isFavorite(movie)}
               showLikeButton={!isFavorite(movie)}
             />
