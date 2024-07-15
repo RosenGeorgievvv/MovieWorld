@@ -1,22 +1,28 @@
 import React from "react";
 
-const MovieCard = ({ movie: { imdbID, Year, Poster, Title, Type } }) => {
+const MovieCard = ({ movie, onEdit, onDelete }) => {
+  const { imdbID, id,  Year, Poster, image, Title, title,  Type, description, isFirebaseMovie } = movie;
+
   return (
-    <div className="movie" key={imdbID}>
+    <div className="movie" key={imdbID || id}>
       <div>
-        <p>{Year}</p>
+        <p>{Year || "Unknown Year"}</p>
       </div>
 
       <div>
-        <img
-          src={Poster !== "N/A" ? Poster : "https://via.placeholder.com/400"}
-          alt={Title}
-        />
+        <img src={ Poster !== "N/A" ? Poster : image || "https://via.placeholder.com/400" } alt={Title || title} />
       </div>
 
       <div>
-        <span>{Type}</span>
-        <h3>{Title}</h3>
+        <span>{Type || "Movie"}</span>
+        <h3>{Title || title}</h3>
+        {description && <p>{description}</p>}
+        {isFirebaseMovie && (
+          <div className="buttons">
+            <button onClick={() => onEdit(movie)}>Edit</button>
+            <button onClick={() => onDelete(id)}>Delete</button>
+          </div>
+        )}
       </div>
     </div>
   );

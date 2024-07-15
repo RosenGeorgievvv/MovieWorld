@@ -27,6 +27,8 @@ const Create = () => {
       await uploadBytes(storageRef, image);
       const url = await getDownloadURL(storageRef);
 
+      console.log('image url:', url);
+
       try {
         await addDoc(collection(db, 'movies'), {
           title,
