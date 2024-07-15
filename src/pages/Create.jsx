@@ -1,14 +1,16 @@
-// ./pages/Create.jsx
 import React, { useState } from 'react';
 import { db } from '../services/firebase';
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import '../styles/Create.css';
 
-const Create = ({ history }) => { 
+const Create = () => { 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('');
+
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -36,7 +38,7 @@ const Create = ({ history }) => {
         setImage(null);
         setDescription('');
 
-        history.push('/');
+        navigate('/')
       } catch (err) {
         console.error('Failed to add movie', err);
       }
