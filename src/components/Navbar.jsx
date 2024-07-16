@@ -20,7 +20,7 @@ const Navbar = () => {
         {currentUser ? (
           <>
             <li className='email'>{currentUser.email}</li>
-            <li><button onClick={logout}>Logout</button></li>
+            <li className='logout'><button onClick={logout}>Logout</button></li>
           </>
         ) : (
           <>
