@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { db } from '../services/firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
@@ -10,7 +10,12 @@ const Create = () => {
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('');
 
+  const titleRef = useRef();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    titleRef.current.focus();
+  }, []);
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -54,7 +59,7 @@ const Create = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-details">
             <label>Title:</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} ref={titleRef} required />
           </div>
           <div className="form-details">
             <label>Image:</label>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Login.css";
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -9,9 +9,15 @@ const Login = () => {
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
+const emailRef = useRef();
 const navigate = useNavigate();
 
-const signIn = (e) =>{
+useEffect(() => {
+  // Focus on the email input field when the component mounts
+  emailRef.current.focus();
+}, []);
+
+const handleSignIn = (e) =>{
   e.preventDefault();
   signInWithEmailAndPassword(auth, email, password).then((credentials) =>{
     console.log(credentials);
@@ -25,8 +31,8 @@ const signIn = (e) =>{
     <div className='main-form'>
         <div className='main-wrapper'>
             <span className='title'>Login</span>
-            <form onSubmit={signIn}>
-                <input type='email' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <form onSubmit={handleSignIn}>
+                <input type='email' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} ref={emailRef} />
                 <input type='password' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <button>Sign in</button>
             </form>
