@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../services/api.js";
 import { db } from '../services/firebase';
-import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, doc, deleteDoc} from 'firebase/firestore';
 import MovieCard from "./MovieCard";
 import SearchIcon from "../assets/search.svg";
 
