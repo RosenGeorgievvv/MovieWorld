@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../services/api.js";
 import { db } from '../services/firebase';
-import { collection, getDocs, addDoc, doc, deleteDoc} from 'firebase/firestore';
+import { collection, getDocs, addDoc, doc, deleteDoc } from 'firebase/firestore';
 import MovieCard from "./MovieCard";
 import SearchIcon from "../assets/search.svg";
-
 
 const Movies = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +39,7 @@ const Movies = () => {
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'movies', id));
-    searchMovies(searchTerm);
+    setMovies(movies.filter(movie => movie.id !== id));
   };
 
   const handleLike = async (movie) => {
