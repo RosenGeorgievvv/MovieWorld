@@ -23,7 +23,7 @@ const Favorites = () => {
     }
   };
 
-  const handleUnlike = async (movie) => {
+  const handleDislike = async (movie) => {
     try {
       await deleteDoc(doc(db, "favorites", movie.id));
       fetchFavorites();
@@ -41,7 +41,7 @@ const Favorites = () => {
             <MovieCard
               key={movie.id}
               movie={movie}
-              onUnlike={handleUnlike}
+              onDislike={handleDislike}
               showLikeButton={false}
             />
           ))}
