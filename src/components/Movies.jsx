@@ -44,7 +44,8 @@ const Movies = () => {
 
   const handleLike = async (movie) => {
     try {
-      await addDoc(collection(db, "favorites"), movie);
+      const newFavorite = { ...movie, favoriteId: movie.imdbID || movie.id };
+      await addDoc(collection(db, "favorites"), newFavorite);
       fetchFavorites();
     } catch (err) {
       console.error("Failed to add favorite", err);
@@ -53,7 +54,7 @@ const Movies = () => {
 
   const handleUnlike = async (movie) => {
     try {
-      const favoriteMovie = favorites.find(fav => fav.imdbID === movie.imdbID || fav.id === movie.id);
+      const favoriteMovie = favorites.find(fav => fav.favoriteId === (movie.imdbID || movie.id));
       if (favoriteMovie) {
         await deleteDoc(doc(db, "favorites", favoriteMovie.id));
         fetchFavorites();
@@ -77,7 +78,7 @@ const Movies = () => {
   };
 
   const isFavorite = (movie) => {
-    return favorites.some(fav => fav.imdbID === movie.imdbID || fav.id === movie.id);
+    return favorites.some(fav => fav.favoriteId === (movie.imdbID || movie.id));
   };
 
   return (
