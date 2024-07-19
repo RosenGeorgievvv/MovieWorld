@@ -21,11 +21,11 @@ const Movies = () => {
     setMovies([...apiMovies, ...firebaseMovies]);
   };
 
-  const fetchMoviesFromAPI = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
-    return data.Search || [];
-  };
+ const fetchMoviesFromAPI = async (title) => {
+  const response = await fetch(`${API_URL}&s=${title}`);
+  const data = await response.json();
+  return data.Search || [];
+};
 
   const fetchFirebaseMovies = async () => {
     const querySnapshot = await getDocs(collection(db, 'movies'));
@@ -52,7 +52,7 @@ const Movies = () => {
     }
   };
 
-  const handleUnlike = async (movie) => {
+  const handleDislike = async (movie) => {
     try {
       const favoriteMovie = favorites.find(fav => fav.favoriteId === (movie.imdbID || movie.id));
       if (favoriteMovie) {
@@ -98,7 +98,7 @@ const Movies = () => {
               movie={movie}
               onDelete={handleDelete}
               onLike={handleLike}
-              onUnlike={handleUnlike}
+              onDislike={handleDislike}
               isFavorite={isFavorite(movie)}
               showLikeButton={!isFavorite(movie)}
             />

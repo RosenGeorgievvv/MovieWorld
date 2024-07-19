@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const MovieCard = ({ movie, onDelete, onLike, onUnlike, showLikeButton }) => {
+const MovieCard = ({ movie, onDelete, onLike, onDislike, showLikeButton }) => {
   const { imdbID, id, Year, Poster, image, Title, title, Type, description, isFirebaseMovie } = movie;
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const MovieCard = ({ movie, onDelete, onLike, onUnlike, showLikeButton }) => {
         {showLikeButton ? (
           <button onClick={() => onLike(movie)}>Like</button>
         ) : (
-          <button onClick={() => onUnlike(movie)}>Unlike</button>
+          <button onClick={() => onDislike(movie)}>Dislike</button>
         )}
       </div>
     </div>
