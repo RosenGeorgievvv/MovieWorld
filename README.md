@@ -17,15 +17,9 @@
 - [x] Add movies api
 - [x] Preseed practice server
 ## 4. Page Implementations
-- [x] Game list
+- [x] Movie list
 - [x] Details
   - [x] Details link
   - [x] Details route
   - [x] Api function - getOne
 - [x] Home - Latest Movies
-## 5. Comments (Advanced)
-- [x] Create service for nested resource `comments`
-- [x] Post comment to server
-- [x] Read comments from server
-- [x] Add comments in the component
-- [x] Clear form
