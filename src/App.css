@@ -117,7 +117,7 @@ h1 {
 }
 
 .movie .buttons button,
-.movie .like-dislike-container button {
+.movie .like-dislike-button button {
   background-color: #f9d3b4;
   color: #212426;
   border: none;
@@ -141,6 +141,16 @@ h1 {
 .movie .like-dislike-container {
   bottom: 15px;
   width: 100%;
+}
+
+/* Ensure buttons are hidden by default for newly added movies */
+.new-movie .like-dislike-container {
+  display: none;
+}
+
+/* Show the buttons on hover for newly added movies */
+.new-movie:hover .like-dislike-container {
+  display: flex;
 }
 
 .movie div:nth-of-type(1) {
