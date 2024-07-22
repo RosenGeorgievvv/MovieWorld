@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./Authentication";
 
 const MovieCard = ({ movie, onDelete, onLike, onDislike, showLikeButton }) => {
   const { imdbID, id, Year, Poster, image, Title, title, Type, description, isFirebaseMovie } = movie;
   const navigate = useNavigate();
+
+  const { currentUser } = useAuth();
 
   const handleEdit = () => {
     navigate(`/edit/${id}`);
@@ -24,16 +27,21 @@ const MovieCard = ({ movie, onDelete, onLike, onDislike, showLikeButton }) => {
         <h3>{Title || title}</h3>
         {description && <p>{description}</p>}
         
-        {isFirebaseMovie && (
+        {currentUser && isFirebaseMovie && (
           <div className="buttons">
             <button onClick={handleEdit}>Edit</button>
             <button onClick={() => onDelete(id)}>Delete</button>
           </div>
         )}
-        {showLikeButton ? (
-          <button onClick={() => onLike(movie)}>Like</button>
-        ) : (
-          <button onClick={() => onDislike(movie)}>Dislike</button>
+
+        {currentUser && (
+          <div className="like-dislike-buttons">
+            {showLikeButton ? (
+              <button onClick={() => onLike(movie)}>Like</button>
+            ) : (
+              <button onClick={() => onDislike(movie)}>Dislike</button>
+            )}
+          </div>
         )}
       </div>
     </div>
