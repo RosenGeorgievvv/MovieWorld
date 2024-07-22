@@ -35,7 +35,7 @@ const MovieCard = ({ movie, onDelete, onLike, onDislike, showLikeButton }) => {
         )}
 
         {currentUser && (
-          <div className="like-dislike-buttons">
+          <div className="like-dislike-container">
             {showLikeButton ? (
               <button onClick={() => onLike(movie)}>Like</button>
             ) : (
