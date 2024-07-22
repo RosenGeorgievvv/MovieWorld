@@ -12,7 +12,7 @@ const Navbar = () => {
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           {currentUser && <li><Link to="/create">Add Movie</Link></li>}
-          <li><Link to="/favorites">Favorites</Link></li>
+          {currentUser && <li><Link to="/favorites">Favorites</Link></li>}
           <li><Link to="/about">About</Link></li>
         </ul> 
       </div>
