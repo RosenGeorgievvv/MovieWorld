@@ -26,20 +26,19 @@ const MovieCard = ({ movie, onDelete, onLike, onDislike, showLikeButton }) => {
         <span>{Type || "Movie"}</span>
         <h3>{Title || title}</h3>
         {description && <p>{description}</p>}
-        
-        {currentUser && isFirebaseMovie && (
-          <div className="buttons">
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => onDelete(id)}>Delete</button>
-          </div>
-        )}
 
         {currentUser && (
-          <div className="like-dislike-button">
+          <div className="buttons">
             {showLikeButton ? (
               <button onClick={() => onLike(movie)}>Like</button>
             ) : (
               <button onClick={() => onDislike(movie)}>Dislike</button>
+            )}
+            {isFirebaseMovie && (
+              <>
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={() => onDelete(id)}>Delete</button>
+              </>
             )}
           </div>
         )}
