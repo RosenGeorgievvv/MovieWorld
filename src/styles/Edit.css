@@ -108,5 +108,8 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    padding-top: 400px;
+    color: #f9d3b4;
+    font-size: 20px;
   }
   
