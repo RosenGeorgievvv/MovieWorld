@@ -15,7 +15,6 @@ const Footer = () => {
       </div>
       <div className="footer-center">
         <p>© All rights reserved.</p>
-        <p>Built by Rosen Georgiev</p>
       </div>
     </div>
   );
