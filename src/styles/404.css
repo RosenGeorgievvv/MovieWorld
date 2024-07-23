@@ -1,0 +1,8 @@
+.main{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #f9d3b4;
+    padding-top: 400px;
+    font-size: 30px;
+}

@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Create from "./pages/Create";
 import EditForm from "./components/EditForm"; 
 import { AuthProvider } from "./components/Authentication";
+import ErrorPage from "./pages/404";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />
             <Route path="/edit/:id" element={<EditForm />} />
+            <Route path="/*" element={<ErrorPage />} />
           </Routes>
           <Footer />
         </div>
