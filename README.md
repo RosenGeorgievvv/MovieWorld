@@ -23,3 +23,7 @@
   - [x] Details route
   - [x] Api function - getOne
 - [x] Home - Latest Movies
+
+
+
+https://movie-world-rosy.vercel.app
